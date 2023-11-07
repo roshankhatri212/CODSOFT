@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
+import Navigation from './Navigation'; // Import the Navigation component
 
 import Home from './components/Home';
 import ProductDetails from './components/ProductDetails';
@@ -11,12 +11,13 @@ import Auth from './components/Auth';
 function App() {
   return (
     <Router>
+      <Navigation /> {/* Include the Navigation component */}
       <Routes>
-        <Route path="/" exact component={Home} />
-        <Route path="/product/:id" component={ProductDetails} />
-        <Route path="/cart" component={ShoppingCart} />
-        <Route path="/checkout" component={Checkout} />
-        <Route path="/auth" component={Auth} />
+        <Route path="/" element={<Home />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/cart" element={<ShoppingCart />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/auth" element={<Auth />} />
       </Routes>
     </Router>
   );
