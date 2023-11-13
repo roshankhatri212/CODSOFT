@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Auth.css'; // Import the CSS file for styling
 
 function Auth() {
   const [email, setEmail] = useState('');
@@ -13,12 +14,16 @@ function Auth() {
   };
 
   return (
-    <div>
+    <div className="auth-container">
       <h2>Login or Signup</h2>
-      <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={handleLogin}>Login</button>
-      <button onClick={handleSignup}>Signup</button>
+      <form>
+        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <div className="button-container">
+          <button onClick={handleLogin}>Login</button>
+          <button onClick={handleSignup}>Signup</button>
+        </div>
+      </form>
     </div>
   );
 }

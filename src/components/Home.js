@@ -1,31 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css';
-import ShoppingCartComponent from './ShoppingCart'; // Rename the component
+import ShoppingCartComponent from './ShoppingCart';
+import { Link } from 'react-router-dom';
 
-
-const Home = () => {
- 
+const Home = ({ cart, removeFromCart }) => {
   const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-  const [cart, setCart] = useState(storedCart);
   const [showNotification, setShowNotification] = useState(false);
 
   const addToCart = (product) => {
     const updatedCart = [...cart, product];
-    setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    removeFromCart(updatedCart);
     setShowNotification(true);
 
     // Hide the notification after 2 seconds
     setTimeout(() => {
       setShowNotification(false);
     }, 2000);
-  };
-
-  const removeFromCart = (index) => {
-    const updatedCart = [...cart];
-    updatedCart.splice(index, 1);
-    setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
   useEffect(() => {
@@ -54,7 +44,10 @@ const Home = () => {
         </div>
         {/* Add more product cards as needed */}
       </section>
-      <Link to="/cart">Go to Cart</Link> {/* Use Link to navigate to the cart page */}
+      <Link to="/cart">Go to Cart</Link>
+
+      <ShoppingCartComponent cart={cart} removeFromCart={removeFromCart} />
+
       {showNotification && <div className="notification">Product added to cart!</div>}
     </div>
   );

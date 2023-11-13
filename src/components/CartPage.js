@@ -5,7 +5,7 @@ import ShoppingCartComponent from './ShoppingCart';
 const CartPage = ({ cart, removeFromCart }) => {
   return (
     <div>
-      <h1>Shopping Cart Page</h1>
+   
       <ShoppingCartComponent cart={cart} removeFromCart={removeFromCart} />
     </div>
   );
