@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navigation from './Navigation'; // Import the Navigation component
-
+import { CartProvider } from './components/CartContext';
 import Home from './components/Home';
 import ProductDetails from './components/ProductDetails';
 import ShoppingCart from './components/ShoppingCart';
@@ -11,14 +11,16 @@ import Auth from './components/Auth';
 function App() {
   return (
     <Router>
+     
       <Navigation /> {/* Include the Navigation component */}
+      <CartProvider>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/cart" element={<ShoppingCart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/auth" element={<Auth />} />
-      </Routes>
+      </Routes></CartProvider>
     </Router>
   );
 }
